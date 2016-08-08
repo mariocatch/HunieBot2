@@ -23,12 +23,12 @@ namespace HunieBot.Host.Interfaces
         string[] ParametersArray { get; }
 
         /// <summary>
-        ///     Gets the parameters of the command that were passed in.
+        ///     Gets the raw (unparsed) parameters of the command that were passed in.
         /// </summary>
         /// <remarks>
         ///     Parsed from <see cref="Discord.Message.RawText"/>
         /// </remarks>
-        string[] RawParametersArray { get; }
+        string RawParameters { get; }
 
         /// <summary>
         ///     Gets a specially parsed <see cref="HunieBot.Host.Parameters"/> object.

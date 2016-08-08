@@ -34,10 +34,10 @@ namespace HunieBot.Host
 
         public string[] ParametersArray { get; }
 
-        public string[] RawParametersArray { get; }
+        public string RawParameters { get; }
 
         public Parameters Parameters { get; }
-        
+
         public HunieCommand(Channel c, Server s, User u, DiscordClient dc, Message m)
         {
             Channel = c;
@@ -59,8 +59,8 @@ namespace HunieBot.Host
 
             Command = cleanedRegText.First();
             ParametersArray = clnParams.ParseParameters().ToArray();
-            RawParametersArray = rawParams.ParseParameters().ToArray();
-            Parameters = new Parameters(ConvertArrayToParameters(rawParamsParsed.ToArray()));
+            RawParameters = rawParams;
+            Parameters = new Parameters(ConvertArrayToParameters(ParametersArray));
 
         }
 
@@ -77,7 +77,7 @@ namespace HunieBot.Host
             var currentParameterValues = new List<string>();
             foreach (var item in array)
             {
-                if(item[0] == ParamsIndicator)
+                if (item[0] == ParamsIndicator)
                 {
                     if (!string.IsNullOrWhiteSpace(currentParameter))
                     {
@@ -179,5 +179,5 @@ namespace HunieBot.Host
             return _parameters.GetEnumerator();
         }
     }
-    
+
 }

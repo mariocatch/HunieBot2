@@ -36,9 +36,9 @@ namespace HunieBot.Host.Internal
         [HandleCommand(CommandEvent.CommandReceived | CommandEvent.MessageReceived, UserPermissions.Administrator, commands: new[] { "set_user_permission", "sup" })]
         public async Task SetUserPermissions(IHunieCommand command)
         {
-            if (command.RawParametersArray.Length != 2) return;
-            var userParameterRaw = command.RawParametersArray[0].Trim();
-            var levelParameterRaw = command.RawParametersArray[1].Trim();
+            if (command.ParametersArray.Length != 2) return;
+            var userParameterRaw = command.ParametersArray[0].Trim();
+            var levelParameterRaw = command.ParametersArray[1].Trim();
             UserPermissions userPermission;
             var userId = Convert.ToUInt64(userParameterRaw.Substring(2, userParameterRaw.Length - 3));
             var targetUser = command.Server.Users.First(u => u.Id == userId);
@@ -50,9 +50,9 @@ namespace HunieBot.Host.Internal
         [HandleCommand(CommandEvent.CommandReceived | CommandEvent.MessageReceived, UserPermissions.Administrator, commands: "get_user_permission")]
         public async Task GetUserPermission(IHunieCommand command)
         {
-            if (command.RawParametersArray.Length != 0 || command.RawParametersArray.Length != 2) return;
-            var userParameter = command.RawParametersArray[0].Trim();
-            var levelParameter = command.RawParametersArray[1].Trim();
+            if (command.ParametersArray.Length != 0 || command.ParametersArray.Length != 2) return;
+            var userParameter = command.ParametersArray[0].Trim();
+            var levelParameter = command.ParametersArray[1].Trim();
             await command.Channel.SendMessage($"Sorry {command.User.Mention}, {command.Command} is not implemented yet.");
         }
 
